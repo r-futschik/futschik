@@ -1,6 +1,6 @@
-Build started at 2020-09-28T19:54:13.794318
+Build started at 2020-09-28T22:50:09.962224
 Main binary: /usr/bin/python3
-Build Options: 
+Build Options: -Dbackend=ninja
 Python system: Linux
 The Meson build system
 Version: 0.55.3
@@ -11,41 +11,9 @@ None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global fl
 None of 'PKG_CONFIG_PATH' are defined in the environment, not changing global flags.
 Project name: 01_processes
 Project version: 0.1
-None of 'CXX' are defined in the environment, not changing global flags.
-None of 'CXXFLAGS' are defined in the environment, not changing global flags.
-None of 'LDFLAGS' are defined in the environment, not changing global flags.
-None of 'CPPFLAGS' are defined in the environment, not changing global flags.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity testing C++ compiler: c++
-Is cross compiler: False.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity check compiler command line: c++ /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.cc -o /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.exe -pipe -D_FILE_OFFSET_BITS=64
-Sanity check compile stdout:
-
------
-Sanity check compile stderr:
-
------
-Running test binary command: /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.exe
 C++ compiler for the build machine: c++ (gcc 9.3.0 "c++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0")
 C++ linker for the build machine: c++ ld.bfd 2.34
 None of 'AR' are defined in the environment, not changing global flags.
-None of 'CXX' are defined in the environment, not changing global flags.
-None of 'CXXFLAGS' are defined in the environment, not changing global flags.
-None of 'LDFLAGS' are defined in the environment, not changing global flags.
-None of 'CPPFLAGS' are defined in the environment, not changing global flags.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity testing C++ compiler: c++
-Is cross compiler: False.
-None of 'CXX_LD' are defined in the environment, not changing global flags.
-Sanity check compiler command line: c++ /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.cc -o /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.exe -pipe -D_FILE_OFFSET_BITS=64
-Sanity check compile stdout:
-
------
-Sanity check compile stderr:
-
------
-Running test binary command: /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/sanitycheckcpp.exe
 C++ compiler for the host machine: c++ (gcc 9.3.0 "c++ (Ubuntu 9.3.0-10ubuntu2) 9.3.0")
 C++ linker for the host machine: c++ ld.bfd 2.34
 None of 'AR' are defined in the environment, not changing global flags.
@@ -55,12 +23,12 @@ Host machine cpu family: x86_64
 Host machine cpu: x86_64
 Target machine cpu family: x86_64
 Target machine cpu: x86_64
-Build targets in project: 1
+Build targets in project: 2
 
 Found ninja-1.10.0.git.kitware.jobserver-1 at /home/linux/.local/bin/ninja
 Running compile:
-Working directory:  /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpimn9texq
-Command line:  c++ /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpimn9texq/testfile.cpp -o /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpimn9texq/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
+Working directory:  /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpxec7zo9f
+Command line:  c++ /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpxec7zo9f/testfile.cpp -o /mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build/meson-private/tmpxec7zo9f/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -fpermissive --print-search-dirs 
 
 Code:
  

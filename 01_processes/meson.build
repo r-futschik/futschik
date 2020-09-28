@@ -19,8 +19,14 @@ src = ['src/aba.cpp']
 executable('aba',
             sources : src,
             include_directories : inc_dir,
-            #dependencies : XXX_dep,
-            #link_with : XXX_lib
+           )
+
+
+src2 = ['src/charout.cpp']
+
+executable('charout',
+            sources : src2,
+            include_directories : inc_dir,
            )
 
 # doctest_dir = include_directories([get_option('doctest_include_dir')])

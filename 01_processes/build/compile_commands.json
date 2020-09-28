@@ -4,5 +4,11 @@
     "command": "c++ -Iaba.p -I. -I.. -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++2a -g -MD -MQ aba.p/src_aba.cpp.o -MF aba.p/src_aba.cpp.o.d -o aba.p/src_aba.cpp.o -c ../src/aba.cpp",
     "file": "../src/aba.cpp",
     "output": "aba.p/src_aba.cpp.o"
+  },
+  {
+    "directory": "/mnt/c/Users/Raphi/Desktop/2Kool4Skool/Nvs/Meson/template/futschik/01_processes/build",
+    "command": "c++ -Icharout.p -I. -I.. -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++2a -g -MD -MQ charout.p/src_charout.cpp.o -MF charout.p/src_charout.cpp.o.d -o charout.p/src_charout.cpp.o -c ../src/charout.cpp",
+    "file": "../src/charout.cpp",
+    "output": "charout.p/src_charout.cpp.o"
   }
 ]

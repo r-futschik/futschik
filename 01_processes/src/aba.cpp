@@ -1,8 +1,12 @@
 #include <iostream>
-#include <thread>
 #include <unistd.h>
-#include <cstdlib>
 #include <chrono>
+#include <thread>
+#include <csignal>
+#include <cstdlib>
+#include <cerrno>
+#include <cstring>
+#include <sys/wait.h>
 
 using namespace std;
 
@@ -10,21 +14,34 @@ using namespace std;
 
 int main() {
 
-    std::chrono::milliseconds sleeptime(500);
+    chrono::milliseconds sleeptime(500);
+
+    int i{0};
+    int j{0};
+
     auto pid{fork()};
-    cout << "Hi" << endl;
+
     if (pid == 0) {
-        while (true){
-            cout << "A" << flush;
-            std::this_thread::sleep_for(sleeptime);
+        while (i < 6){
+            cout << "B" << flush;
+            this_thread::sleep_for(sleeptime);
+            i++;
         }
     } else {
-        while (true){
-            cout << "B" << flush;
-            std::this_thread::sleep_for(sleeptime);
+        int status{};
+        while (j < 6){
+            cout << "A" << flush;
+            this_thread::sleep_for(sleeptime);
+            j++;
         }
+
+        kill(pid, SIGKILL);
+        waitpid(pid, &status, 0);
+
+        cout << "subprocess " << pid << " exited with " << WEXITSTATUS(status) << endl;
+        
     }
 
-    cout << "Bye" << endl;
+
     
 }

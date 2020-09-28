@@ -44,6 +44,14 @@ build aba.p/src_aba.cpp.o: cpp_COMPILER ../src/aba.cpp
 build aba: cpp_LINKER aba.p/src_aba.cpp.o
  LINK_ARGS = -Wl,--as-needed -Wl,--no-undefined
 
+build charout.p/src_charout.cpp.o: cpp_COMPILER ../src/charout.cpp
+ DEPFILE = charout.p/src_charout.cpp.o.d
+ DEPFILE_UNQUOTED = charout.p/src_charout.cpp.o.d
+ ARGS = -Icharout.p -I. -I.. -I../include -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -Wnon-virtual-dtor -Wextra -Wpedantic -Werror -std=c++2a -g
+
+build charout: cpp_LINKER charout.p/src_charout.cpp.o
+ LINK_ARGS = -Wl,--as-needed -Wl,--no-undefined
+
 # Test rules
 
 build meson-test: CUSTOM_COMMAND all PHONY
@@ -84,7 +92,7 @@ build meson-uninstall: CUSTOM_COMMAND PHONY
 
 build uninstall: phony meson-uninstall
 
-build all: phony aba
+build all: phony aba charout
 
 build clean: phony meson-clean
 
