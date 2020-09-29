@@ -1,21 +1,37 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <string>
 
 using namespace std;
 
-void f() {
-    int count{1};
-    while (true) {
-        cout << count << " Porsche" << endl;
 
-        this_thread::sleep_for(chrono::milliseconds(1000));
-        count++;
+class Car{
+    public:
+    string name;
+
+    Car(string name){
+        this->name = name;
     }
-}
+
+    void operator()() {
+        int count{1};
+        Car car{name};
+
+        while (true) {
+            cout << count << " "<< this->name << endl;
+
+            this_thread::sleep_for(chrono::milliseconds(1000));
+            count++;
+        }
+    }
+};
+
+
+
 
 int main() {
-    thread t{f};
+    thread t{Car("Porsche")};
     
     t.join();
 
