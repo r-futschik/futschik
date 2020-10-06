@@ -14,7 +14,7 @@ inc_dir = include_directories(['include',
 
 
 
-src = ['src/account.cpp']
+src = ['src/main.cpp']
 
 executable('account',
             sources : src,
