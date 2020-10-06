@@ -1,10 +1,10 @@
 #include "account.h"
+
 #include <iostream>
 #include <thread>
 #include <chrono>
 #include <string>
-#include <random>
-#include <iomanip>
+#include <mutex>
 
 using namespace std;
 
@@ -21,7 +21,7 @@ void withdraw(Account& acc, int amount, bool& success){
 int main() {
     bool succ1;
     bool succ2;
-    int count{0};
+
     Account acc1{Account()};
 
     /*
@@ -33,15 +33,15 @@ int main() {
     cout << "Balance: " << acc1.get_balance() << endl;
     */
 
-    while (acc1.get_balance() == 0){
-        acc1.deposit(1);
-        thread t{withdraw, ref(acc1), 1, ref(succ1)};
-        thread t2{withdraw, ref(acc1), 1, ref(succ2)};
-        t.join();
-        t2.join();
-        count += 1;
-    }
+    
+    acc1.deposit(1);
+    thread t{withdraw, ref(acc1), 1, ref(succ1)};
+    thread t2{withdraw, ref(acc1), 1, ref(succ2)};
+    t.join();
+    t2.join();
+
+    
     
 
-    cout << "Balance: " << acc1.get_balance() << " " << succ1 << " " << succ2 << " " << count << endl;
+    cout << "Balance: " << acc1.get_balance() << " " << succ1 << " " << succ2 << endl;
 }
