@@ -12,9 +12,8 @@ int Account::get_balance(){
 }
 
 void Account::deposit(int amount){
-    int tmp{this->balance};
-    this_thread::sleep_for(10ms);
-    this->balance = tmp + amount;
+    unique_lock<mutex> guard{m};
+    this->balance += amount;
 }
 
 bool Account::withdraw(int amount){
