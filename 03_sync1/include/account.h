@@ -12,4 +12,10 @@ class Account{
     bool withdraw(int amount);
 };
 
+
+class Depositer{
+
+    public:
+    void operator()(Account& account);
+};
 #endif 

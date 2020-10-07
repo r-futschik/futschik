@@ -1,4 +1,5 @@
 #include "account.h"
+#include <iostream>
 #include <thread>
 #include <mutex>
 
@@ -11,7 +12,9 @@ int Account::get_balance(){
 }
 
 void Account::deposit(int amount){
-    this->balance += amount;
+    int tmp{this->balance};
+    this_thread::sleep_for(10ms);
+    this->balance = tmp + amount;
 }
 
 bool Account::withdraw(int amount){
@@ -26,3 +29,10 @@ bool Account::withdraw(int amount){
 }
 
 
+
+void Depositer::operator()(Account& account){
+    for(int i = 0; i < 5; i++){
+        account.deposit(1);
+    }
+    
+}

@@ -1,5 +1,4 @@
 #include "account.h"
-
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -19,8 +18,7 @@ void withdraw(Account& acc, int amount, bool& success){
 }
 
 int main() {
-    bool succ1;
-    bool succ2;
+    
 
     Account acc1{Account()};
 
@@ -33,15 +31,21 @@ int main() {
     cout << "Balance: " << acc1.get_balance() << endl;
     */
 
-    
+    /*
+    bool succ1;
+    bool succ2;
     acc1.deposit(1);
     thread t{withdraw, ref(acc1), 1, ref(succ1)};
     thread t2{withdraw, ref(acc1), 1, ref(succ2)};
     t.join();
     t2.join();
 
+    */
     
-    
+    thread t{Depositer(), ref(acc1)};
+    thread t2{Depositer(), ref(acc1)};
 
-    cout << "Balance: " << acc1.get_balance() << " " << succ1 << " " << succ2 << endl;
+    t.join();
+    t2.join();
+    cout << "Balance: " << acc1.get_balance() << endl;
 }
