@@ -1,4 +1,5 @@
 #include "account.h"
+#include "CLI11.hpp"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -17,11 +18,21 @@ void withdraw(Account& acc, int amount, bool& success){
     
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+    CLI::App app("Account app");
+
+    int balance{0};
+    app.add_option("balance", balance, "Initial balance")->required();
+
+    int deposits{5};
+    app.add_option("-d,--deposits", deposits, "Count of deposits(default=5)", true);
+    CLI11_PARSE(app, argc, argv);
+
     
 
     Account acc1{Account()};
 
+    acc1.deposit(balance);
     /*
     Punkt 1
     acc1.deposit(15);
@@ -42,10 +53,11 @@ int main() {
 
     */
     
-    thread t{Depositer(), ref(acc1)};
-    thread t2{Depositer(), ref(acc1)};
+      
+    thread t{Depositer(), ref(acc1), deposits};
+    
 
     t.join();
-    t2.join();
+
     cout << "Balance: " << acc1.get_balance() << endl;
 }

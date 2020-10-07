@@ -29,8 +29,8 @@ bool Account::withdraw(int amount){
 
 
 
-void Depositer::operator()(Account& account){
-    for(int i = 0; i < 5; i++){
+void Depositer::operator()(Account& account, int amount){
+    for(int i = 0; i < amount; i++){
         account.deposit(1);
     }
     

@@ -16,6 +16,6 @@ class Account{
 class Depositer{
 
     public:
-    void operator()(Account& account);
+    void operator()(Account& account, int amount);
 };
 #endif 
