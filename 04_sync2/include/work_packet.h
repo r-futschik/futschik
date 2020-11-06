@@ -1,4 +1,6 @@
 #pragma once
+#ifndef WORK_PACKET_H
+#define WORK_PACKET_H
 
 
 class WorkPacket {
@@ -14,3 +16,5 @@ class WorkPacket {
         return this->id;
     }
 };
+
+#endif 
