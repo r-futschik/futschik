@@ -7,6 +7,7 @@ using namespace std;
 
 
 mutex m;
+
 int Account::get_balance(){
     return this->balance;
 }

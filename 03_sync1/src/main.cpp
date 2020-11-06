@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
     app.add_option("balance", balance, "Initial balance")->required();
 
     int deposits{5};
-    app.add_option("-d,--deposits", deposits, "Count of deposits(default=5)", true);
+    app.add_option("-d,--deposits", deposits, "Count of deposits(default=5). New customer bonus, depositis count double!", true);
     CLI11_PARSE(app, argc, argv);
 
     
@@ -55,9 +55,10 @@ int main(int argc, char* argv[]) {
     
       
     thread t{Depositer(), ref(acc1), deposits};
-    
+    thread t2{Depositer(), ref(acc1), deposits};
 
     t.join();
+    t2.join();
 
     cout << "Balance: " << acc1.get_balance() << endl;
 }
