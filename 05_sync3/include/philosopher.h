@@ -17,9 +17,11 @@ class Philosopher {
     std::timed_mutex& right_fork;
 
     Semaphor* semaphor;
+    bool livelock;
     
     public:
-    Philosopher(int number, std::timed_mutex& left_fork, std::timed_mutex& right_fork, Semaphor* semaphor) : number(number), left_fork(left_fork), right_fork(right_fork), semaphor(semaphor) {};
+    Philosopher(int number, std::timed_mutex& left_fork, std::timed_mutex& right_fork, Semaphor* semaphor, bool livelock) 
+    : number(number), left_fork(left_fork), right_fork(right_fork), semaphor(semaphor) , livelock(livelock){};
     Philosopher() = delete;
     void operator()();
 };

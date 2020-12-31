@@ -34,11 +34,11 @@ int main(int argc, char* argv[]) {
         sem = nullptr;
     }
 
-    Philosopher p1{1, ref(gabel1), ref(gabel2), ref(sem)}; 
-    Philosopher p2{2, ref(gabel2), ref(gabel1), ref(sem)};
-    Philosopher p3{3, ref(gabel3), ref(gabel4), ref(sem)};
-    Philosopher p4{4, ref(gabel4), ref(gabel5), ref(sem)};
-    Philosopher p5{5, ref(gabel5), ref(gabel1), ref(sem)};
+    Philosopher p1{1, ref(gabel1), ref(gabel2), ref(sem), livelock}; 
+    Philosopher p2{2, ref(gabel2), ref(gabel1), ref(sem), livelock};
+    Philosopher p3{3, ref(gabel3), ref(gabel4), ref(sem), livelock};
+    Philosopher p4{4, ref(gabel4), ref(gabel5), ref(sem), livelock};
+    Philosopher p5{5, ref(gabel5), ref(gabel1), ref(sem), livelock};
 
     thread t1{p1};
     thread t2{p2};
