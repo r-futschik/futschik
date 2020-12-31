@@ -9,45 +9,43 @@
 
 using namespace std;
 
+mutex out_mtx;
 
+void println(const vector<string>& v){
+    lock_guard<mutex> lg{out_mtx};
+    cout << "Philosopher " << v[0] << v[1] << endl;
+}
 
 void Philosopher::operator()() {
     ostringstream buf;
     while (true) {
-        buf << "Philosopher " << number << " is thinking..." << endl;
+        println({to_string(number), " is thinking..."});
         this_thread::sleep_for(chrono::milliseconds(1000));
-        cout << buf.str() << flush;
-        buf.str("");
 
 
-        buf << "Philosopher " << number << " attempts to get left fork" << endl;
-        cout << buf.str() << flush;
-        buf.str("");
+
+       println({to_string(number), " attempts to get left fork"});
+        
 
         left_fork.lock();
-        buf << "Philosopher " << number << " got left fork. Now he wants the right one..." << endl;
-        cout << buf.str() << flush;
-        buf.str("");
+        println({to_string(number), " got left fork. Now he wants the right one..."});
+        
 
         right_fork.lock();
 
-        buf << "Philosopher " << number << " got right fork. Now he is eating..." << endl;
-        cout << buf.str() << flush;
-        buf.str("");
+        println({to_string(number), " got right fork. Now he is eating..."});
+        
 
         this_thread::sleep_for(chrono::milliseconds(2000));
-        buf << "Philosopher " << number << " finished eating" << endl;
-        cout << buf.str() << flush;
-        buf.str("");
+        println({to_string(number), " finished eating"});
+        
 
         left_fork.unlock();
-        buf << "Philosopher " << number << " released left fork" << endl;;
-        cout << buf.str() << flush;
-        buf.str("");
+        println({to_string(number), " released left fork"});
+        
         
         right_fork.unlock();
-        buf << "Philosopher " << number << " released right fork" << endl;;
-        cout << buf.str() << flush;
-        buf.str("");
+        println({to_string(number), " released right fork"});
+        
     }
 }
