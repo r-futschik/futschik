@@ -16,10 +16,13 @@ void Philosopher::operator()() {
         Utils::println("Philosopher", to_string(number), "is thinking...");
         this_thread::sleep_for(chrono::milliseconds(1000));
 
-
-
-       Utils::println("Philosopher", to_string(number), "attempts to get left fork");
         
+
+        Utils::println("Philosopher", to_string(number), "attempts to get left fork");
+
+        if (semaphor != nullptr) {
+                semaphor->aquire();
+        }
 
         left_fork.lock();
         Utils::println("Philosopher", to_string(number), "got left fork. Now he wants the right one...");
@@ -35,6 +38,9 @@ void Philosopher::operator()() {
         Utils::println("Philosopher", to_string(number), "finished eating");
         
 
+        if (semaphor != nullptr) {
+                semaphor->release();
+        }
         left_fork.unlock();
         Utils::println("Philosopher", to_string(number)," released left fork");
         

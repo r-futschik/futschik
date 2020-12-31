@@ -6,17 +6,17 @@
 #include <mutex>
 #include <condition_variable>
 
-class Semaphore {
+class Semaphor {
     private:
         int counter; 
         std::condition_variable not_free;
         std::mutex mtx;
 
     public:
-        Semaphore() {
+        Semaphor() {
             counter = 0;
         };
-        Semaphore(int start_value) {
+        Semaphor(int start_value) {
             counter = start_value;
         };
 
