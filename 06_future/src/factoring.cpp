@@ -1,6 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <future>
+#include <thread>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
@@ -24,10 +26,13 @@ int main(int argc, char* argv[]) {
 
     vector<string> str_vektor;
 
+    vector<future<vector<InfInt>>> future_vektor;
+    
     CLI::App app("Factor Numbers");
     
     app.add_option("number", str_vektor, "numbers to factor")->required()->check(checkString);
-    app.add_option("-a, --async", "async");
+    bool activate_async;
+    app.add_flag("-a, --async", activate_async, "async");
 
     CLI11_PARSE(app, argc, argv);
 
@@ -36,11 +41,19 @@ int main(int argc, char* argv[]) {
         int_vektor.push_back(value);
     }
 
-    for(const auto& value: int_vektor) {
-        cout << value << ": ";
-        for(const auto& factor: get_factors(value) ){
-            cout << factor << " ";
+    for(unsigned i=0; i < int_vektor.size(); i++) {
+        cout << int_vektor[i] << ": ";
+        if (activate_async) {
+            future_vektor.push_back(std::async(launch::async, get_factors, int_vektor[i]));
+            for(const auto& factor: future_vektor[i].get() ){
+                cout << factor << " ";
+            }
+        } else {
+            for(const auto& factor: get_factors(int_vektor[i]) ){
+                cout << factor << " ";
+            }
         }
+        
 
         cout << endl;
     }
