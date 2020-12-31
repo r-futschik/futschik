@@ -7,7 +7,7 @@
 #include <iostream>
 #include <mutex>
 #include <string>
-#include <vector>
+#include "semaphor.h"
 
 
 class Philosopher {

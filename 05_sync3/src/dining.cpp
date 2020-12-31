@@ -3,7 +3,7 @@
 #include <mutex>
 
 #include "philosopher.h"
-
+#include "semaphor.h"
 using namespace std;
 
 
