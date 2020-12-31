@@ -22,12 +22,23 @@ string checkString(const string &str){
     return string();
 }
 
-void output(vector<InfInt>& numbers, vector<future<vector<InfInt>>>& result){
+void output(vector<InfInt>& numbers, vector<shared_future<vector<InfInt>>>& results){
     for(unsigned i=0; i < numbers.size(); i++) {
         cout << numbers[i] << ": ";
-        result[i].wait();
-        for(const auto& factor: result[i].get() ){
-                cout << factor << " ";
+        results[i].wait();
+        for(const auto& factor: results[i].get() ){
+            cout << factor << " ";
+        }
+        cout << endl;
+    }
+}
+
+void checkFactor(vector<InfInt>& numbers, vector<shared_future<vector<InfInt>>>& results){
+    for(unsigned i=0; i < numbers.size(); i++) {
+        for(const auto& factor: results[i].get() ){
+            if (numbers[i] % factor != 0){
+                cerr << "Factors didnt add up" << endl;
+            }
         }
         cout << endl;
     }
@@ -39,7 +50,7 @@ int main(int argc, char* argv[]) {
 
     vector<InfInt> int_vektor;
 
-    vector<future<vector<InfInt>>> future_vektor;
+    vector<shared_future<vector<InfInt>>> future_vektor;
     
     CLI::App app("Factor Numbers");
     
