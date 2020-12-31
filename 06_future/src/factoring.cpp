@@ -8,6 +8,7 @@
 #include "InfInt.h"
 #pragma GCC diagnostic pop
 
+#include "calc_factors.h"
 #include "CLI11.hpp"
 
 using namespace std;
@@ -33,11 +34,15 @@ int main(int argc, char* argv[]) {
     vector<InfInt> int_vektor;
     for(const auto& value: str_vektor) {
         int_vektor.push_back(value);
-        std::cout << value << endl;
     }
 
     for(const auto& value: int_vektor) {
-        std::cout << value << endl;
+        cout << value << ": ";
+        for(const auto& factor: get_factors(value) ){
+            cout << factor << " ";
+        }
+
+        cout << endl;
     }
     
 }
