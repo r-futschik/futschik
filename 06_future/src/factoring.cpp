@@ -22,9 +22,22 @@ string checkString(const string &str){
     return string();
 }
 
+void output(vector<InfInt>& numbers, vector<future<vector<InfInt>>>& result){
+    for(unsigned i=0; i < numbers.size(); i++) {
+        cout << numbers[i] << ": ";
+        result[i].wait();
+        for(const auto& factor: result[i].get() ){
+                cout << factor << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main(int argc, char* argv[]) {
 
     vector<string> str_vektor;
+
+    vector<InfInt> int_vektor;
 
     vector<future<vector<InfInt>>> future_vektor;
     
@@ -36,26 +49,20 @@ int main(int argc, char* argv[]) {
 
     CLI11_PARSE(app, argc, argv);
 
-    vector<InfInt> int_vektor;
-    for(const auto& value: str_vektor) {
-        int_vektor.push_back(value);
-    }
+    
 
-    for(unsigned i=0; i < int_vektor.size(); i++) {
-        cout << int_vektor[i] << ": ";
-        if (activate_async) {
-            future_vektor.push_back(std::async(launch::async, get_factors, int_vektor[i]));
-            for(const auto& factor: future_vektor[i].get() ){
-                cout << factor << " ";
-            }
-        } else {
-            for(const auto& factor: get_factors(int_vektor[i]) ){
-                cout << factor << " ";
-            }
-        }
+
+    for(unsigned i=0; i < str_vektor.size(); i++) {
         
-
-        cout << endl;
+        int_vektor.push_back(str_vektor[i]);
+        future_vektor.push_back(std::async(launch::async, get_factors, int_vektor[i]));
     }
+
+
+    
+    thread t {output, ref(int_vektor), ref(future_vektor)};
+
+    t.join();
+
     
 }
