@@ -3,6 +3,7 @@
 #include <string>
 #include <future>
 #include <thread>
+#include <chrono>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wmisleading-indentation"
@@ -40,7 +41,6 @@ void checkFactor(vector<InfInt>& numbers, vector<shared_future<vector<InfInt>>>&
                 cerr << "Factors didnt add up" << endl;
             }
         }
-        cout << endl;
     }
 }
 
@@ -66,14 +66,24 @@ int main(int argc, char* argv[]) {
     for(unsigned i=0; i < str_vektor.size(); i++) {
         
         int_vektor.push_back(str_vektor[i]);
-        future_vektor.push_back(std::async(launch::async, get_factors, int_vektor[i]));
+        if (activate_async){
+            future_vektor.push_back(async(launch::async, get_factors, int_vektor[i]));
+        } else {
+            future_vektor.push_back(async(get_factors, int_vektor[i]));
+        }
     }
 
-
+    auto start = chrono::system_clock::now();
     
-    thread t {output, ref(int_vektor), ref(future_vektor)};
+    thread t1 {output, ref(int_vektor), ref(future_vektor)};
+    thread t2 {checkFactor, ref(int_vektor), ref(future_vektor)};
 
-    t.join();
+    t1.join();
+    t2.join();
+
+    auto duration = chrono::duration_cast<chrono::milliseconds>
+    (std::chrono::system_clock::now() - start);
+    cout << "Time elapsed used for factoring: " << duration.count() << "ms" << endl;
 
     
 }
